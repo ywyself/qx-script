@@ -95,7 +95,7 @@ if (magicJS.read(blackKey)) {
           const tabNameList = new Set(["推荐", "热门", "追番"]);
           let obj = JSON.parse(magicJS.response.body);
           if (obj["data"]["tab"]) {
-            obj["data"]["tab"] = obj["data"]["tab"].filter((e) => tabNameList.has(e.id));
+            obj["data"]["tab"] = obj["data"]["tab"].filter((e) => tabNameList.has(e.name));
           }
           /** 
            * 普通|概念版 右上角按钮
