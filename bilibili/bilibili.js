@@ -101,24 +101,14 @@ if (magicJS.read(blackKey)) {
            * ---|108 会员购   bilibili://mall/home
            * 176|--- 消息     bilibili://link/im_home
            */
-          const topList = new Set([176, 222, 107, 108]);
+          const topList = new Set([176]);
           if (obj["data"]["top"]) {
             let top = obj["data"]["top"].filter((e) => topList.has(e.id));
-            top.map(e => {
-                delete e['red_dot'];
-                if(e.id === 107 || e.id === 222) {
-                    e['uri'] = 'bilibili://pgc/partition_page?page_name=bangumi-operation\u0026title=番剧\u0026select_id=1';
-                    e['icon'] = 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/bilibili/bilibili_icon.png';
-                    e['tab_id'] = '番剧Top';
-                    e['name'] = "番剧";
-                }
-                if(e.id === 108) {
-                    e['uri'] = 'bilibili://user_center/watch_later';
-                    e['icon'] = "http://i0.hdslb.com/bfs/archive/63bb768caa02a68cb566a838f6f2415f0d1d02d6.png";
-                    e['tab_id'] = "稍后再看Top";
-                    e['name'] = "稍后再看";
-                    
-                }
+            top.push({
+                'uri': 'bilibili://pgc/partition_page?page_name=bangumi-operation\u0026title=番剧\u0026select_id=1',
+                'icon': 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/bilibili/bilibili_icon.png',
+                'tab_id': '番剧Top',
+                'name': '番剧'
             });
             obj["data"]["top"] = top;
           }
