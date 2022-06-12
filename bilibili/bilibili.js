@@ -91,9 +91,11 @@ if (magicJS.read(blackKey)) {
            * 151|--:影视 bilibili://pgc/cinema-tab
            */
           const tabList = new Set([40, 41, 99, 100]);
+          // 尝试使用tab name直观修改
+          const tabNameList = new Set(["推荐", "热门", "追番"]);
           let obj = JSON.parse(magicJS.response.body);
           if (obj["data"]["tab"]) {
-            obj["data"]["tab"] = obj["data"]["tab"].filter((e) => tabList.has(e.id));
+            obj["data"]["tab"] = obj["data"]["tab"].filter((e) => tabNameList.has(e.id));
           }
           /** 
            * 普通|概念版 右上角按钮
@@ -104,7 +106,7 @@ if (magicJS.read(blackKey)) {
           const topList = new Set([176]);
           if (obj["data"]["top"]) {
             let top = obj["data"]["top"].filter((e) => topList.has(e.id));
-            top.push({
+            top.unshift({
                 'uri': 'bilibili://pgc/partition_page?page_name=bangumi-operation\u0026title=番剧\u0026select_id=1',
                 'icon': 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/bilibili/bilibili_icon.png',
                 'tab_id': '番剧Top',
