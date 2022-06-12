@@ -90,7 +90,7 @@ if (magicJS.read(blackKey)) {
            * --|101:追番 bilibili://pcg/home
            * 151|--:影视 bilibili://pgc/cinema-tab
            */
-          const tabList = new Set([40, 41, 42, 151, 99, 100, 101]);
+          const tabList = new Set([40, 41, 99, 100]);
           let obj = JSON.parse(magicJS.response.body);
           if (obj["data"]["tab"]) {
             obj["data"]["tab"] = obj["data"]["tab"].filter((e) => tabList.has(e.id));
